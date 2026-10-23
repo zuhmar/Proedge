@@ -1,0 +1,11 @@
+# Supply the cloud host's public CA trust bundle only during dependency installation.
+services:
+  api:
+    build:
+      secrets: [ca_bundle]
+  web:
+    build:
+      secrets: [ca_bundle]
+secrets:
+  ca_bundle:
+    file: ${CLOUD_CA_BUNDLE:-/etc/ssl/certs/ca-certificates.crt}
